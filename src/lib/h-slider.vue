@@ -1,4 +1,3 @@
-
 <template>
   <div class="H-silder" :style="{ width: HsliderOp.width + 'px' }">
     <div class="m-imgs f-cb" :style="{ width: boxwidth + 'px', 'margin-left': leftpx + 'px' }">

@@ -1,4 +1,4 @@
-# h-slider
+# Hslider
 
 > for slider
 

@@ -13,4 +13,4 @@ const playHslider = {
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(playHslider)
 }
-export default playHslider // 导出..
+export default playHslider // 导出.

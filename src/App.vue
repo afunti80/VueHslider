@@ -6,9 +6,7 @@
 </template>
 
 <script>
-  // import Hello from './components/Hello'
   import hSlider from './lib/h-slider.vue'
-
   export default {
     name: 'app',
     components: {
