@@ -1,12 +1,12 @@
 {
-  "name": "VueHslider",
+  "name": "vue-hslider",
   "description": "for slider",
-  "version": "1.0.0",
+  "version": "0.0.5",
   "author": "sql80 <sql@sql80.com>",
   "license": "MIT",
   "private": false,
-  "main": "dist/VueHslider.js",
-  "files": [  // 用于发布忽略 当我们的包够复杂的时候 我们总不能把所有本地开发或者测试的组件全部都发布上去 这个时候我们开启这个选项 意为只发布这两个文件 当然我们这个包比较简单 就不开启了
+  "main": "dist/vue-hslider.js",
+  "files": [
     "dist",
     "src"
   ],
@@ -16,6 +16,10 @@
   },
   "dependencies": {
     "vue": "^2.5.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sql80/VueHslider"
   },
   "browserslist": [
     "> 1%",

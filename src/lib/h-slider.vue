@@ -4,7 +4,7 @@
       <img class="img" :style="{ width: HsliderOp.width + 'px' }" v-for="item in imgList" :src="item.url">
     </div>
     <div class="u-dot">
-      <i :class="[act == key ? 'act' : '']" v-for="itm,key in HsliderOp.size" @click="pay(key)"></i>
+      <i :class="[act == key ? 'act' : '']" v-for="itm,key in HsliderOp.size" @click="pay(key,1)"></i>
     </div>
   </div>
 </template>
@@ -28,40 +28,26 @@
         type: Object
       }
     },
-    watch: {
-      content (){
-        var _this = this;
-      }
-    },
     mounted (){
-      // let out = document.getElementById(this.pid.out).clientWidth;
-      // let _in = document.getElementById(this.pid.in).clientWidth;
       var _this = this
-      this.$nextTick(()=>{
-        console.log('3333')
-        this.boxwidth = _this.HsliderOp.width *  _this.HsliderOp.size
-      });
-    },
-    watch: {
-      leftpx (){
-        var _this = this;
-        setTimeout(()=>{
-          // let out = document.getElementById(_this.pid.out).clientWidth;
-          // let _in = document.getElementById(_this.pid.in).clientWidth;
-          _this.$nextTick(()=>{
-            let i = this.act + 1
-            if (this.act === (this.HsliderOp.size - 1)) {
-              i = 0
-            }
-            _this.pay(i)
-          });
-        },3000);
-      }
+      this.boxwidth = _this.HsliderOp.width *  _this.HsliderOp.size
+      _this.slider()
     },
     methods: {
+      slider: function () {
+        let _this = this
+        _this.slider = setInterval(()=> {
+          let i = this.act + 1
+          if (this.act === (this.HsliderOp.size - 1)) {
+              i = 0
+          }
+          console.log(i)
+          _this.pay(i)
+        }, _this.HsliderOp.speed)
+      },
       pay: function (index) {
         this.act = index
-        this.leftpx = (0-index) * this.HsliderOp.width
+        this.leftpx = (0 - index) * this.HsliderOp.width
       }
     }
   }
@@ -83,14 +69,14 @@
     }
     .u-dot {
       position: absolute;
-      bottom:10px;
-      left:10px;
+      bottom:20px;
+      left:20px;
       i{
         cursor: pointer;
-        margin-right:5px;
-        width:10px;height:10px;
+        margin-right:10px;
+        width:12px;height:12px;
         border-radius: 50%;
-        background:rgba(255,255,255,0.5);
+        border:3px solid #f5f5f5;
         display: inline-block;
       }
       .act{

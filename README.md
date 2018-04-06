@@ -2,17 +2,50 @@
 
 > for slider
 
-## Build Setup
+## Usage
+Install:
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
 ```
+npm install vue-hslider -S
+```
+Import:
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+```javascript
+import vueHslider from 'vue-hslider'
+Vue.use(vueHslider)
+```
+Use:
+```javascript
+  <template>
+    <div id="app">
+     <h-Slider  class="two"  :HsliderOp='HsliderOp' :imgList="imgList" ></h-Slider>
+    </div>
+  </template>
+  <script>
+    export default {
+       name: 'app',
+       data: function () {
+         return {
+           HsliderOp: {
+             width: 543, // 宽度
+             height: 543, // 高度
+             size: 3, // 数量
+             speed: 5000 // 间隔时间
+           },
+           imgList: [ // 图片列表
+             {
+               url: 'http://www.sql80.com/pic/gundongeu-1.png'
+             },
+             {
+               url: 'http://www.sql80.com/pic/gundongeu-2.png'
+             },
+             {
+               url: 'http://www.sql80.com/pic/gundongeu-3.png'
+             }
+           ]
+         }
+       }
+     }
+  </script>
+  
+```
