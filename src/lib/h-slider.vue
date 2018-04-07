@@ -41,7 +41,6 @@
           if (this.act === (this.HsliderOp.size - 1)) {
               i = 0
           }
-          console.log(i)
           _this.pay(i)
         }, _this.HsliderOp.speed)
       },
