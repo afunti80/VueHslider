@@ -1,10 +1,14 @@
 <template>
-  <div class="H-silder" :style="{ width: HsliderOp.width + 'px' }">
-    <div class="m-imgs f-cb" :style="{ width: boxwidth + 'px', 'margin-left': leftpx + 'px' }">
-      <img class="img" :style="{ width: HsliderOp.width + 'px' }" v-for="item in imgList" :src="item.url">
-    </div>
-    <div class="u-dot">
-      <i :class="[act == key ? 'act' : '']" v-for="itm,key in HsliderOp.size" @click="pay(key,1)"></i>
+  <div class="H-silder" :style="{ height: HsliderOp.height + 'px',width: HsliderOp.width + 'px'}">
+    <transition-group tag="ul" class='slide-ul' name="list">
+      <li v-for="(list,index) in imgList" :key="index" v-show="index===currentIndex" @mouseenter="HStop" @mouseleave="HSgo">
+        <a :href="list.clickUrl" >
+          <img :src="list.url" :alt="list.desc">
+        </a>
+      </li>
+    </transition-group>
+    <div class="carousel-items">
+      <span v-for="(item,index) in imgList.length" :class="{'active':index===currentIndex}" @click="change(index)"></span>
     </div>
   </div>
 </template>
@@ -14,6 +18,7 @@
     name: 'h-slider',
     data (){
       return{
+        currentIndex: 0,
         run: false,
         boxwidth: '',
         leftpx: 0,
@@ -28,63 +33,88 @@
         type: Object
       }
     },
-    mounted (){
-      var _this = this
-      this.boxwidth = _this.HsliderOp.width *  _this.HsliderOp.size
-      _this.slider()
+    created (){
+      this.$nextTick(() => {
+        this.timer = setInterval(() => {
+          this.autoPlay()
+        }, this.HsliderOp.speed)
+      })
     },
     methods: {
-      slider: function () {
-        let _this = this
-        _this.slider = setInterval(()=> {
-          let i = this.act + 1
-          if (this.act === (this.HsliderOp.size - 1)) {
-              i = 0
-          }
-          _this.pay(i)
-        }, _this.HsliderOp.speed)
+      HStop: function () {
+        this.timer = setInterval(() => {
+          this.autoPlay()
+        }, this.HsliderOp.speed)
       },
-      pay: function (index) {
-        this.act = index
-        this.leftpx = (0 - index) * this.HsliderOp.width
+      HSgo: function () {
+        clearInterval(this.timer)
+        this.timer = null
+      },
+      autoPlay: function () {
+        this.currentIndex++
+        if (this.currentIndex > this.imgList.length - 1) {
+          this.currentIndex = 0
+        }
+      },
+      change: function (index) {
+        this.currentIndex = index
       }
     }
   }
 </script>
 
 <style  scoped lang="less">
-  .H-silder{
+  .H-silder {
+    width: 100%;
     position: relative;
-    margin: 20px;
     overflow: hidden;
-    .m-imgs {
-      -webkit-transition: all 1s ease-in-out;
-      -moz-transition: all 1s ease-in-out;
-      -o-transition: all 1s ease-in-out;
-      transition: all 1s ease-in-out;
-      .img{
-        float: left;
+    ul{
+      width: 100%;
+      height: 100%;
+      margin:0;
+      padding:0px;
+      li{
+        list-style: none;
+        margin:0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
       }
     }
-    .u-dot {
+    .carousel-items{
       position: absolute;
-      bottom:20px;
-      left:20px;
-      i{
+      bottom:15px;
+      left:15px;
+      span{
         cursor: pointer;
         margin-right:10px;
         width:12px;height:12px;
         border-radius: 50%;
         border:3px solid #f5f5f5;
         display: inline-block;
-      }
-      .act{
-        background:#fff;
+        &.active{
+            background:#Fff;
+         }
       }
     }
   }
+  .list-enter-to {
+    transition: all 1s ease;
+    transform: translateX(0);
+  }
 
+  .list-leave-active {
+    transition: all 1s ease;
+    transform: translateX(-100%)
+  }
 
+  .list-enter {
+    transform: translateX(100%)
+  }
+
+  .list-leave {
+    transform: translateX(0)
+  }
 
 </style>
 

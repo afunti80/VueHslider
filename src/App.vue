@@ -12,18 +12,20 @@
         HsliderOp: {
           width: 543,
           height: 543,
-          size: 3,
           speed: 5000
         },
         imgList: [
           {
-            url: 'http://www.sql80.com/pic/gundongeu-1.png'
+            url: 'http://www.sql80.com/pic/gundongeu-1.png',
+            desc: 'haha'
           },
           {
-            url: 'http://www.sql80.com/pic/gundongeu-2.png'
+            url: 'http://www.sql80.com/pic/gundongeu-2.png',
+            desc: 'haha'
           },
           {
-            url: 'http://www.sql80.com/pic/gundongeu-3.png'
+            url: 'http://www.sql80.com/pic/gundongeu-3.png',
+            desc: 'haha'
           }
         ]
       }
