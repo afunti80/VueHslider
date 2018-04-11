@@ -18,7 +18,7 @@ Use:
 ```javascript
   <template>
     <div id="app">
-     <h-Slider  class="two"  :HsliderOp='HsliderOp' :imgList="imgList" ></h-Slider>
+     <h-Slider  :HsliderOp='HsliderOp' :imgList="imgList" ></h-Slider>
     </div>
   </template>
   <script>
@@ -29,7 +29,6 @@ Use:
            HsliderOp: {
              width: 543, // 宽度
              height: 543, // 高度
-             size: 3, // 数量
              speed: 5000 // 间隔时间
            },
            imgList: [ // 图片列表
